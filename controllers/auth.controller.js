@@ -30,6 +30,8 @@ exports.login = async (req, res) => {
             }
             else {
                 if (bcrypt.compareSync(password, user.password)) {
+                    req.session.login = user.login;
+                    req.session.save();
                     res.status(200).send({ message: 'Login succesful' });
                 } 
                 else {
@@ -39,8 +41,17 @@ exports.login = async (req, res) => {
         } else {
             res.status(400).send({ message: 'Bad request' });
         }
-    } catch {
+    } catch (err) {
         res.status(500).send({ message: err.message });
     }
 
+}
+
+exports.getUser = async (req, res) => {
+    if (req.session.login) {
+        res.send({ login: req.session.login })
+    }
+    else {
+        res.status(401).send({ message: "You are not authorized"})
+    }
 }

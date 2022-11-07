@@ -1,27 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
-// Import routes
-const noticesRoutes = require('./routes/notices.routes');
-//const usersRoutes = require('./routes/users.routes');
-const authRoutes = require('./routes/auth.routes')
-
+// start express server
 const app = express(); 
+app.listen(process.env.PORT || 8000, () => {
+  console.log('Server is running...');
+});
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-app.use('/api', noticesRoutes);
-//app.use('/api', usersRoutes);
-app.use('/auth', authRoutes)
-
-app.use((req, res) => {
-    res.status(404).send('404 not found...');
-})
-
-// prepare for external db
+// connect to db - ready for remote db, not set
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
@@ -32,12 +22,34 @@ else dbUri = 'mongodb://localhost:27017/NoticeBoard';
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
-// and listeners to db, to confirm if connection is ok
 db.once('open', () => {
   console.log('Connected to the database');
 });
 db.on('error', err => console.log('Error ' + err));
 
-app.listen(8000, () => {
-  console.log('Server is running on port: 8000');
-});
+// add middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(session({ secret: 'xyz567', store: MongoStore.create({ mongoUrl: dbUri, collection: 'sessions' }), resave: false, saveUninitialized: false }))
+
+// import routes
+const noticesRoutes = require('./routes/notices.routes');
+const authRoutes = require('./routes/auth.routes');
+//const usersRoutes = require('./routes/users.routes');
+
+// use routes
+app.use('/api', noticesRoutes);
+app.use('/auth', authRoutes);
+//app.use('/api', usersRoutes);
+
+// error status
+app.use((req, res) => {
+    res.status(404).send('404 not found...');
+})
+
+
+
+// middleware to store sessions in mongoDB 
+//app.use(session({ secret: 'xyz567', store: MongoStore.create({mongoUrl: dbUri})}));
+
