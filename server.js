@@ -28,10 +28,24 @@ db.once('open', () => {
 db.on('error', err => console.log('Error ' + err));
 
 // add middleware
-app.use(cors());
+if(process.env.NODE_ENV !== 'production') {
+  app.use(
+    cors({
+      origin: ['http://localhost:3000'],
+      credentials: true,
+    })
+  );
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: 'xyz567', store: MongoStore.create({ mongoUrl: dbUri, collection: 'sessions' }), resave: false, saveUninitialized: false }))
+app.use(session({ 
+  secret: 'xyz567', 
+  store: MongoStore.create({ mongoUrl: dbUri, collection: 'sessions' }), 
+  resave: false, 
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV == 'production',
+  }, }))
 
 // import routes
 const noticesRoutes = require('./routes/notices.routes');
