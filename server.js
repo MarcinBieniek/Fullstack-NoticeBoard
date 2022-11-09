@@ -4,6 +4,7 @@ const path = require('path');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const bcrypt = require('bcryptjs');
 
 // start express server
 const app = express(); 
@@ -39,7 +40,7 @@ if(process.env.NODE_ENV !== 'production') {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ 
-  secret: 'xyz567', 
+  secret: bcrypt.hashSync('xyz678', 8), 
   store: MongoStore.create({ mongoUrl: dbUri, collection: 'sessions' }), 
   resave: false, 
   saveUninitialized: false,
