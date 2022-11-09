@@ -46,7 +46,11 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV == 'production',
-  }, }))
+  }, 
+}))
+
+// access to storage folder
+app.use(express.static(path.join(__dirname, '/public')));
 
 // import routes
 const noticesRoutes = require('./routes/notices.routes');
