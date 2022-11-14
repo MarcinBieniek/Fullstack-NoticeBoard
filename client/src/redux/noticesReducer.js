@@ -1,4 +1,5 @@
 //selectors
+export const getAllNotices = ({ notices }) => notices;
 
 // actions
 const createActionName = actionName => `app/notices/${actionName}`;
