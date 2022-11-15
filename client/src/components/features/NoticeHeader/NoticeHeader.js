@@ -17,7 +17,7 @@ const NoticeHeader = props => {
                 <Card.Text className={"m-0"}><span className={"fw-bold"}>Price:</span> {props.price}</Card.Text>
                 <Card.Text>{props.shortDescription}</Card.Text>    
 
-            <Link to={"/notice/" + props.id}>
+            <Link to={"/notice/" + props._id}>
                 <Button variant="primary">
                     Details
                 </Button>

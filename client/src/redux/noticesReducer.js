@@ -3,13 +3,16 @@ import shortid from 'shortid';
 
 //selectors
 export const getAllNotices = ({ notices }) => notices;
+export const getNoticeById = ({ notices }, id) => notices.find((notice) => notice._id === id);
 
 // actions
 const createActionName = actionName => `app/notices/${actionName}`;
 const UPDATE_NOTICES = createActionName('UPDATE_NOTICES');
+const DELETE_NOTICES = createActionName('DELETE_NOTICES');
 
 // action creators
 export const updateNotices = payload => ({ type: UPDATE_NOTICES, payload });
+export const deleteNotices = payload => ({ type: DELETE_NOTICES, payload });
 
 export const fetchNotices = () => {
   return (dispatch) => {
@@ -22,7 +25,9 @@ export const fetchNotices = () => {
 const noticesReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_NOTICES:
-      return [...action.payload]
+      return [...action.payload];
+    case DELETE_NOTICES:
+      return statePart.filter(notice => notice._id !== action.payload)
     default:
       return statePart;
   };
