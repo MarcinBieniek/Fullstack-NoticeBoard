@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchNotices } from './redux/noticesReducer';
 
 import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
@@ -14,7 +17,9 @@ import NotFound from './components/pages/NotFound/NotFound';
 
 function App() {
 
-  // fetch data here?
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(fetchNotices(dispatch)), [dispatch])
 
   return (
     <main>
