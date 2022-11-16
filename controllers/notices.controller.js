@@ -24,7 +24,7 @@ exports.getById = async (req, res) => {
 
 exports.postDoc = async (req, res) => {
     const { title, text, date, price, city, author } = req.body;
-    const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
+    //const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
     if (req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)) {
         try { 
@@ -32,7 +32,7 @@ exports.postDoc = async (req, res) => {
                 title,
                 text,
                 date,
-                foto: req.file.filename,
+                //foto: req.file.filename,
                 price,
                 city,
                 author

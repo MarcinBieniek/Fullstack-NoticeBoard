@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-//import { dateToStr } from '../../utils/dateToStr';
+import { dateToStr } from '../../../utils/dateToStr';
 
 const SingleNotice = () => {
     const dispatch = useDispatch();
@@ -27,7 +27,6 @@ const SingleNotice = () => {
     const handleClose = () => setShow(false);
     
     const handleDelete = e => {
- 
         dispatch(deleteNotices(id))
     }
 
@@ -47,10 +46,11 @@ const SingleNotice = () => {
                     </div>
                     <Card className="border-0">
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Author:</span>{' '+ noticeData.author}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Published:</span>{' ' + noticeData.date}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{dateToStr(noticeData.date)}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Text:</span>{' ' + noticeData.text}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Price:</span>{' ' + noticeData.price + '$'}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>City:</span>{' ' + noticeData.city}</Card.Text>
+                        <Card.Text dangerouslySetInnerHTML={{ __html: noticeData.text }} />
                     </Card>
                 </div>
             </Row>
