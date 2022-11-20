@@ -21,19 +21,25 @@ const PostForm = ({
     const [author, setAuthor] = useState(props.author || '');
     const [date, setDate] = useState(props.date || '');
     const [text, setText] = useState(props.text || '');
-    const [foto, setFoto] = useState(props.foto || '');
+    const [foto, setFoto] = useState('');
     const [price, setPrice] = useState(props.price || '');
     const [city, setCity] = useState(props.city || '');
     const [dateError, setDateError] = useState(false);
     const [contentError, setContentError] = useState(false);
 
-    const handleSubmit = () => {
+    // handle sumbit rework start
+
+    const handleSubmit = (e) => {
+        
         setContentError(!text);
         setDateError(!date);
         if(text && date) {
             action({ _id, title, author, date, price, text, foto, city });
         }
       };
+
+    // handle submit rework end
+    // check below
 
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
@@ -86,15 +92,13 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="noticeFoto">
+            <Form.Group className="mb-3 w-50" controlId="foto">
                 <Form.Label>Foto</Form.Label>
                 <Form.Control 
-                    {...register("foto", { required: true, minLength: 1 })}
-                    value={foto} 
-                    onChange={e => setFoto(e.target.value)} 
+                    type='file'
+                    onChange={(e) => setFoto(e.target.files[0])}
                     placeholder="Write photo name"
                 />
-                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
             <Form.Group className="mb-3 w-50" controlId="noticeCity">

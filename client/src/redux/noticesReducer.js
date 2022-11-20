@@ -24,6 +24,8 @@ export const fetchNotices = () => {
   }
 };
 
+/* delete below 
+
 export const addNoticesRequest = (newNotice) => {
   return (dispatch) => {
     const options = {
@@ -38,6 +40,8 @@ export const addNoticesRequest = (newNotice) => {
       .then(() => dispatch(addNotices(newNotice)))
   }
 }
+
+*/
 
 const noticesReducer = (statePart = [], action) => {
   switch (action.type) {

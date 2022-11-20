@@ -46,7 +46,7 @@ const SingleNotice = () => {
                     </div>
                     <Card className="border-0">
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Author:</span>{' '+ noticeData.author}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{dateToStr(noticeData.date)}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{noticeData.date}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Text:</span>{' ' + noticeData.text}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Price:</span>{' ' + noticeData.price + '$'}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>City:</span>{' ' + noticeData.city}</Card.Text>
