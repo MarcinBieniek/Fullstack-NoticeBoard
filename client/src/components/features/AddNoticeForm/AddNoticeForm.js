@@ -10,16 +10,25 @@ const AddNoticeForm = () => {
     const navigate = useNavigate();
 
     const handleSubmit  = (notice) => {
+
+        console.log('notice is', notice)
+
         dispatch(addNotices(notice));
-        const formData = new FormData();
-        formData.append('id', notice._id); 
+        const formData = new FormData(); 
         formData.append('title', notice.title);
-        formData.append('author', notice.author);
-        formData.append('date', notice.date);
+        formData.append('description', notice.description);
+        formData.append('location', notice.location);
         formData.append('price', notice.price);
-        formData.append('text', notice.text);
-        formData.append('foto', notice.foto);
-        formData.append('city', notice.city);
+        formData.append('bedrooms', notice.bedrooms);
+        formData.append('bathrooms', notice.bathrooms);
+        formData.append('rooms', notice.rooms);
+        formData.append('meters', notice.meters);
+        formData.append('photo', notice.photo);
+        formData.append('user', notice.user);
+        formData.append('date', notice.date);
+
+        console.log('form data is', formData)
+
         const options = {
             method: 'POST',
             body: formData,

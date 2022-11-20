@@ -23,7 +23,7 @@ exports.getById = async (req, res) => {
 };
 
 exports.postDoc = async (req, res) => {
-    const { title, text, date, price, city, author } = req.body;
+    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date } = req.body;
 
     const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
@@ -31,12 +31,16 @@ exports.postDoc = async (req, res) => {
         try { 
             const newNotice = new Notice({
                 title,
-                text,
-                date,
-                foto: req.file.filename,
+                description,
+                location,
                 price,
-                city,
-                author
+                bedrooms,
+                bathrooms,
+                rooms,
+                meters,
+                photo: req.file.filename,
+                user,
+                date
             })
             await newNotice.save();
             res.status(201).send({ message: 'Notice created' });
@@ -53,17 +57,21 @@ exports.postDoc = async (req, res) => {
 };
 
 exports.putDoc = async (req, res) => {
-    const { title, text, date, price, city, author } = req.body;
+    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date } = req.body;
     
     try {
         const notice = await Notice.findById(req.params.id);
         if (!notice) return res.status(404).json({ message: 'Advert not found...'});
         notice.title = title;
-        notice.text = text;
-        notice.date = date;
+        notice.description = description;
+        notice.location = location;
         notice.price = price;
-        notice.city = city;
-        notice.author = author;
+        notice.bedrooms = bedrooms;
+        notice.bathrooms = bathrooms;
+        notice.rooms = rooms;
+        notice.meters = meters;
+        notice.user = user;
+        notice.date = date;
         if (req.file) {
             notice.image = req.file.filename;
             //fs.unlinkSync(req.file.path);

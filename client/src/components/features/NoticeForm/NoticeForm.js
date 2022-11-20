@@ -16,30 +16,30 @@ const PostForm = ({
     ...props}
 ) => {
 
-    const _id = shortid();
+    const id = props.id;
     const [title, setTitle] = useState(props.title || '');
-    const [author, setAuthor] = useState(props.author || '');
-    const [date, setDate] = useState(props.date || '');
-    const [text, setText] = useState(props.text || '');
-    const [foto, setFoto] = useState('');
+    const [description, setDescription] = useState(props.description || '');
+    const [location, setLocation] = useState(props.locatoion || '');
     const [price, setPrice] = useState(props.price || '');
-    const [city, setCity] = useState(props.city || '');
+    const [bedrooms, setBedrooms] = useState(props.bedrooms || '');
+    const [bathrooms, setBathrooms] = useState(props.bathrooms || '');
+    const [rooms, setRooms] = useState(props.rooms || '');
+    const [meters, setMeters] = useState(props.meters || '');
+    const [photo, setPhoto] = useState(props.image || '');
+    const [user, setUser] = useState(props.user || '');
+    const [date, setDate] = useState(props.date || '');
+    
     const [dateError, setDateError] = useState(false);
     const [contentError, setContentError] = useState(false);
 
-    // handle sumbit rework start
-
     const handleSubmit = (e) => {
         
-        setContentError(!text);
+        setContentError(!description);
         setDateError(!date);
-        if(text && date) {
-            action({ _id, title, author, date, price, text, foto, city });
+        if(description && date) {
+            action({ title, description, location, price, bedrooms, bathrooms, rooms, meters, photo, user, date });
         }
       };
-
-    // handle submit rework end
-    // check below
 
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
@@ -58,14 +58,89 @@ const PostForm = ({
                 {errors.title && <small className="d-block form-text text-danger mt-2">This field is required and must have at least 3 characters</small>}
             </Form.Group>
             
-            <Form.Group className="mb-3 w-50" controlId="noticeAuthor">
-                <Form.Label>Author</Form.Label>
+            <Form.Group className="mb-3 w-50" controlId="noticeLocation">
+                <Form.Label>Location</Form.Label>
                 <Form.Control 
-                    {...register("author", { required: true, minLength: 3 })}
-                    value={author} 
-                    onChange={e => setAuthor(e.target.value)} 
+                    {...register("location", { required: true, minLength: 1 })}
+                    value={location} 
+                    onChange={e => setLocation(e.target.value)} 
+                    placeholder="Write city name"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+            
+            <Form.Group className="mb-3 w-50" controlId="noticePrice">
+                <Form.Label>Price</Form.Label>
+                <Form.Control 
+                    {...register("price", { required: true, minLength: 1 })}
+                    value={price} 
+                    onChange={e => setPrice(e.target.value)} 
+                    placeholder="Write short description"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="noticeBedrooms">
+                <Form.Label>Bedrooms</Form.Label>
+                <Form.Control 
+                    {...register("bedrooms", { required: true, minLength: 1 })}
+                    value={bedrooms} 
+                    onChange={e => setBedrooms(e.target.value)} 
+                    placeholder="Write number of bedrooms"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="noticeBathrooms">
+                <Form.Label>Bathrooms</Form.Label>
+                <Form.Control 
+                    {...register("bathrooms", { required: true, minLength: 1 })}
+                    value={bathrooms} 
+                    onChange={e => setBathrooms(e.target.value)} 
+                    placeholder="Write number of bathrooms"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="noticeRooms">
+                <Form.Label>Rooms</Form.Label>
+                <Form.Control 
+                    {...register("rooms", { required: true, minLength: 1 })}
+                    value={rooms} 
+                    onChange={e => setRooms(e.target.value)} 
+                    placeholder="Write number of rooms"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="noticeMeters">
+                <Form.Label>Meters</Form.Label>
+                <Form.Control 
+                    {...register("meters", { required: true, minLength: 1 })}
+                    value={meters} 
+                    onChange={e => setMeters(e.target.value)} 
+                    placeholder="Write number of quadratmeters"
+                />
+                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="photo">
+                <Form.Label>Photo</Form.Label>
+                <Form.Control 
+                    type='file'
+                    onChange={(e) => setPhoto(e.target.files[0])}
+                    placeholder="Add photo"
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3 w-50" controlId="noticeUser">
+                <Form.Label>User</Form.Label>
+                <Form.Control 
+                    {...register("user", { required: true, minLength: 3 })}
+                    value={user} 
+                    onChange={e => setUser(e.target.value)} 
                     type="text" 
-                    placeholder="Enter author" 
+                    placeholder="Enter username" 
                 />
                 {errors.author && <small className="d-block form-text text-danger mt-2">This field is required and must have at least 3 characters</small>}
             </Form.Group>
@@ -79,50 +154,18 @@ const PostForm = ({
                     placeholder="Enter date"
                 />
                 {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
-            </Form.Group>
+            </Form.Group>    
 
-            <Form.Group className="mb-3 w-50" controlId="noticePrice">
-                <Form.Label>Price</Form.Label>
-                <Form.Control 
-                    {...register("price", { required: true, minLength: 1 })}
-                    value={price} 
-                    onChange={e => setPrice(e.target.value)} 
-                    placeholder="Write short description"
-                />
-                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
-            </Form.Group>
-
-            <Form.Group className="mb-3 w-50" controlId="foto">
-                <Form.Label>Foto</Form.Label>
-                <Form.Control 
-                    type='file'
-                    onChange={(e) => setFoto(e.target.files[0])}
-                    placeholder="Write photo name"
-                />
-            </Form.Group>
-
-            <Form.Group className="mb-3 w-50" controlId="noticeCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control 
-                    {...register("city", { required: true, minLength: 1 })}
-                    value={city} 
-                    onChange={e => setCity(e.target.value)} 
-                    placeholder="Write city name"
-                />
-                {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
-            </Form.Group>
-
-            <Form.Group className="mb-4" controlId="noticeText">
-                <Form.Label value={text}>Description</Form.Label>             
+            <Form.Group className="mb-4" controlId="noticeDescription">
+                <Form.Label value={description}>Description</Form.Label>             
                 <ReactQuill
                     theme="snow"   
-                    value={text} 
-                    onChange={setText}
+                    value={description} 
+                    onChange={setDescription}
                     placeholder="Type here" 
                 />
                 {contentError && <small className="d-block form-text text-danger mt-2">Content can't be empty</small>}
             </Form.Group>
-
 
             <Button as="input" type="submit" value={actionText} />
         </Form>
