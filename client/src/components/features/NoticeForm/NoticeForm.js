@@ -1,10 +1,7 @@
 import {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import shortid from 'shortid';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from 'react-hook-form';
 
 import Form from 'react-bootstrap/Form';
@@ -16,7 +13,10 @@ const PostForm = ({
     ...props}
 ) => {
 
-    const id = props.id;
+    const actualTime = Date.now();
+    const actualTime2 = new Date(actualTime);
+    const publicationDate = actualTime2.toLocaleDateString(); 
+
     const [title, setTitle] = useState(props.title || '');
     const [description, setDescription] = useState(props.description || '');
     const [location, setLocation] = useState(props.locatoion || '');
@@ -27,8 +27,10 @@ const PostForm = ({
     const [meters, setMeters] = useState(props.meters || '');
     const [photo, setPhoto] = useState(props.image || '');
     const [user, setUser] = useState(props.user || '');
-    const [date, setDate] = useState(props.date || '');
+    const [date, setDate] = useState(props.date || publicationDate)
     
+    console.log('date is', date)
+
     const [dateError, setDateError] = useState(false);
     const [contentError, setContentError] = useState(false);
 
@@ -143,18 +145,7 @@ const PostForm = ({
                     placeholder="Enter username" 
                 />
                 {errors.author && <small className="d-block form-text text-danger mt-2">This field is required and must have at least 3 characters</small>}
-            </Form.Group>
-            
-            <Form.Group className="mb-3 w-50" controlId="noticeDate">
-                <Form.Label>Date</Form.Label>
-                <DatePicker 
-                    selected={date}
-                    onChange={(date) => setDate(date)} 
-                    type="date" 
-                    placeholder="Enter date"
-                />
-                {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
-            </Form.Group>    
+            </Form.Group>   
 
             <Form.Group className="mb-4" controlId="noticeDescription">
                 <Form.Label value={description}>Description</Form.Label>             

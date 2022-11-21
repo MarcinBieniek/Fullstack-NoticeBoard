@@ -11,15 +11,10 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-import { dateToStr } from '../../../utils/dateToStr';
-
 const SingleNotice = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const noticeData = useSelector(state => getNoticeById(state, id))
-
-    console.log('noticeData is', noticeData)
-    console.log('notice id is', id)
 
     const [show, setShow] = useState(false);
 
@@ -45,12 +40,18 @@ const SingleNotice = () => {
                         </div>  
                     </div>
                     <Card className="border-0">
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Author:</span>{' '+ noticeData.author}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{noticeData.date}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Text:</span>{' ' + noticeData.text}</Card.Text>
+                        <Card.Text className={"m-0"}>
+                            <span dangerouslySetInnerHTML={{__html: noticeData.description }}></span>
+                        </Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Location:</span>{' '+ noticeData.location}</Card.Text>
                         <Card.Text className={"m-0"}><span className={"fw-bold"}>Price:</span>{' ' + noticeData.price + '$'}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>City:</span>{' ' + noticeData.city}</Card.Text>
-                        <Card.Text dangerouslySetInnerHTML={{ __html: noticeData.text }} />
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Bedrooms:</span>{' ' + noticeData.bedrooms}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Bathrooms:</span>{' ' + noticeData.bathrooms}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Rooms:</span>{' ' + noticeData.rooms}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Meters:</span>{' ' + noticeData.meters}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>User:</span>{' '+ noticeData.user}</Card.Text>
+                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{' '+ noticeData.date}</Card.Text>
+                        
                     </Card>
                 </div>
             </Row>
