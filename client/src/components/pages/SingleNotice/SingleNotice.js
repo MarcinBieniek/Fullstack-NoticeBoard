@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getNoticeById, deleteNotices } from '../../../redux/noticesReducer';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { IMGS_URL } from '../../../configs/config';
 
 //components
 import Row from 'react-bootstrap/Row';
@@ -40,6 +41,14 @@ const SingleNotice = () => {
                         </div>  
                     </div>
                     <Card className="border-0">
+
+                        <Card.Img
+                        variant='top'
+                        src={`${IMGS_URL}/${noticeData.photo}`}
+                        alt='Apartment photo'
+                        >    
+                        </Card.Img>
+
                         <Card.Text className={"m-0"}>
                             <span dangerouslySetInnerHTML={{__html: noticeData.description }}></span>
                         </Card.Text>
