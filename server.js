@@ -50,24 +50,24 @@ app.use(session({
 }))
 
 // access to storage folder
+app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/uploads/')));
+
+
 
 // import routes
 const noticesRoutes = require('./routes/notices.routes');
 const authRoutes = require('./routes/auth.routes');
-//const usersRoutes = require('./routes/users.routes');
 
 // use routes
 app.use('/api', noticesRoutes);
 app.use('/auth', authRoutes);
-//app.use('/api', usersRoutes);
 
 // error status
 app.use((req, res) => {
     res.status(404).send('404 not found...');
 })
-
-
 
 // middleware to store sessions in mongoDB 
 //app.use(session({ secret: 'xyz567', store: MongoStore.create({mongoUrl: dbUri})}));

@@ -5,20 +5,21 @@ const fs = require('fs');
 
 exports.register = async (req, res) => {
     try {    
-        const { login, password } = req.body;
+        const { login, password, phone } = req.body;
         const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
-        console.log(req.file)
+        if (
+            login && 
+            typeof login === 'string' && 
+            password
+            && typeof password === 'string' && 
+            req.file 
+            && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType) && 
+            phone &&
+            typeof phone === 'string'){
 
-        if (login 
-            && typeof login === 'string' 
-            && password 
-            && typeof password === 'string' 
-            && req.file && ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)) {
-            
             const userWithLogin = await User.findOne({ login });
             if (userWithLogin) {
-                fs.unlinkSync(req.file.path)
                 return res
                     .status(409)
                     .send({ message: 'User with this login already exists'});
@@ -27,7 +28,7 @@ exports.register = async (req, res) => {
                 login, 
                 password: await bcrypt.hash(password, 10), 
                 avatar: req.file.filename,
-                telephone });
+                phone });
             res
                 .status(201)
                 .send({ message: "User created " + user.login})

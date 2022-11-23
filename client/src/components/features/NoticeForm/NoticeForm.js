@@ -19,29 +19,46 @@ const PostForm = ({
 
     const [title, setTitle] = useState(props.title || '');
     const [description, setDescription] = useState(props.description || '');
-    const [location, setLocation] = useState(props.locatoion || '');
+    const [location, setLocation] = useState(props.location || '');
     const [price, setPrice] = useState(props.price || '');
     const [bedrooms, setBedrooms] = useState(props.bedrooms || '');
     const [bathrooms, setBathrooms] = useState(props.bathrooms || '');
     const [rooms, setRooms] = useState(props.rooms || '');
     const [meters, setMeters] = useState(props.meters || '');
-    const [photo, setPhoto] = useState(props.image || '');
+    const [photo, setPhoto] = useState('');
     const [user, setUser] = useState(props.user || '');
     const [date, setDate] = useState(props.date || publicationDate)
-    
-    console.log('date is', date)
 
-    const [dateError, setDateError] = useState(false);
     const [contentError, setContentError] = useState(false);
+    const [photoError, setPhotoError] = useState(false);
 
     const handleSubmit = (e) => {
-        
         setContentError(!description);
-        setDateError(!date);
-        if(description && date) {
-            action({ title, description, location, price, bedrooms, bathrooms, rooms, meters, photo, user, date });
+        if(description) {
+            action({ 
+                title, 
+                description, 
+                location, 
+                price, 
+                bedrooms, 
+                bathrooms, 
+                rooms, 
+                meters, 
+                photo, 
+                user, 
+                date 
+            });
         }
-      };
+    };
+
+    const handleFileTest = (e) => {
+        setPhotoError(false);
+        if (e.target.files.length > 0 && e.target.files[0].size < 1000000) {
+            setPhoto(e.target.files[0]);
+        } else {
+            setPhotoError(true)
+        }
+    }
 
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
@@ -130,7 +147,7 @@ const PostForm = ({
                 <Form.Label>Photo</Form.Label>
                 <Form.Control 
                     type='file'
-                    onChange={(e) => setPhoto(e.target.files[0])}
+                    onChange={handleFileTest}
                     placeholder="Add photo"
                 />
             </Form.Group>

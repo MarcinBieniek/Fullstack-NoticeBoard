@@ -11,8 +11,6 @@ const AddNoticeForm = () => {
 
     const handleSubmit  = (notice) => {
 
-        console.log('notice is', notice)
-
         dispatch(addNotices(notice));
         const formData = new FormData(); 
         formData.append('title', notice.title);
@@ -27,7 +25,7 @@ const AddNoticeForm = () => {
         formData.append('user', notice.user);
         formData.append('date', notice.date);
 
-        console.log('form data is', formData)
+        console.log('add formData is', formData)
 
         const options = {
             method: 'POST',

@@ -3,6 +3,8 @@ const initialState = {
         
     ],
     users: null,
+
+    searchString: '',
 }
 
 export default initialState
