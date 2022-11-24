@@ -1,10 +1,6 @@
 const initialState = {
-    notices: [
-        
-    ],
+    notices: [],
     users: null,
-
-    searchString: '',
 }
 
 export default initialState

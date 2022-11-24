@@ -5,7 +5,7 @@ import noticesReducer from './noticesReducer';
 import thunk from 'redux-thunk';
 
 const subreducers = {
-    users: usersReducer,
+    user: usersReducer,
     notices: noticesReducer,
 }
 
