@@ -5,6 +5,7 @@ import { getNoticeById, deleteNotices } from '../../../redux/noticesReducer';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMGS_URL } from '../../../configs/config';
+import { getUser } from '../../../redux/usersReducer';
 
 //components
 import Row from 'react-bootstrap/Row';
@@ -16,6 +17,7 @@ const SingleNotice = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const noticeData = useSelector(state => getNoticeById(state, id))
+    const user = useSelector(getUser);
 
     const [show, setShow] = useState(false);
 
@@ -33,12 +35,16 @@ const SingleNotice = () => {
                 <div className="w-75">
                     <div className="d-flex justify-content-between mb-4">
                         <h1>{noticeData.title}</h1>
+                        
+                        { user && user.login === noticeData.user &&
                         <div>
                             <Link to={`/notice/edit/${id}`}>    
                                 <Button variant="outline-info">Edit</Button>
                             </Link>
                             <Button variant="outline-danger" className="ms-2" onClick={handleShow}>Delete</Button>
                         </div>  
+                        }
+
                     </div>
                     <Card className="border-0">
 

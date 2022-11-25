@@ -1,8 +1,12 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { getUser } from '../../../redux/usersReducer';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+
+    const user = useSelector(getUser);
+
     return (
         <main>
             <Navbar className="my-4 px-3 rounded" bg="primary" variant="dark">
@@ -13,8 +17,20 @@ const NavBar = () => {
             </Navbar.Brand>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="float-right">
-                        <Nav.Link as={NavLink} to="/login">Sign In</Nav.Link>
-                        <Nav.Link as={NavLink} to="/register">Sign Up</Nav.Link>
+
+                        { !user &&
+                            <Nav.Link as={NavLink} to="/login">Sign In</Nav.Link>
+                        }
+                        { !user &&
+                            <Nav.Link as={NavLink} to="/register">Sign Up</Nav.Link>
+                        }
+                        { user &&
+                            <h4>{"Hi " + user.login}</h4>
+                        }
+                        { user &&
+                            <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>
+                        }
+
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

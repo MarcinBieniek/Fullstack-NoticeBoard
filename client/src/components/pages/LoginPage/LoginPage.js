@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/usersReducer'
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState(null); // null, 'loading', 'success', 'serverError', 'clientError', 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ const LoginPage = () => {
         if (res.status === 200) {
           setStatus('success');
           dispatch(logIn({ login }));
+          setTimeout(() => navigate('/'), 1000)
         } else if ( res.status === 400) {
           setStatus('clientError');
         } else {

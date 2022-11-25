@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { API_URL } from '../../../config';
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+
+  const navigate = useNavigate();
   
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +35,7 @@ const RegisterPage = () => {
       .then(res => {
         if (res.status === 201) {
           setStatus('success');
+          setTimeout(() => navigate('/'), 2000)
         } else if ( res.status === 400) {
           setStatus('clientError');
         } else if (res.status === 409) {
