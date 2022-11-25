@@ -35,7 +35,7 @@ const RegisterPage = () => {
       .then(res => {
         if (res.status === 201) {
           setStatus('success');
-          setTimeout(() => navigate('/'), 2000)
+          setTimeout(() => navigate('/'), 1000)
         } else if ( res.status === 400) {
           setStatus('clientError');
         } else if (res.status === 409) {
