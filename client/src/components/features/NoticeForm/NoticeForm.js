@@ -1,17 +1,19 @@
 import {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
 import { useForm } from 'react-hook-form';
-
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { getUser } from '../../../redux/usersReducer';
+import { useSelector } from 'react-redux';
 
 const PostForm = ({
     action,
     actionText, 
     ...props}
 ) => {
+
+    const user = useSelector(getUser);
 
     const actualTime = Date.now();
     const actualTime2 = new Date(actualTime);
@@ -26,7 +28,6 @@ const PostForm = ({
     const [rooms, setRooms] = useState(props.rooms || '');
     const [meters, setMeters] = useState(props.meters || '');
     const [photo, setPhoto] = useState('');
-    const [user, setUser] = useState(props.user || '');
     const [date, setDate] = useState(props.date || publicationDate)
 
     const [contentError, setContentError] = useState(false);
@@ -45,7 +46,7 @@ const PostForm = ({
                 rooms, 
                 meters, 
                 photo, 
-                user, 
+                user: user.login, 
                 date 
             });
         }
@@ -150,19 +151,7 @@ const PostForm = ({
                     onChange={handleFileTest}
                     placeholder="Add photo"
                 />
-            </Form.Group>
-
-            <Form.Group className="mb-3 w-50" controlId="noticeUser">
-                <Form.Label>User</Form.Label>
-                <Form.Control 
-                    {...register("user", { required: true, minLength: 3 })}
-                    value={user} 
-                    onChange={e => setUser(e.target.value)} 
-                    type="text" 
-                    placeholder="Enter username" 
-                />
-                {errors.author && <small className="d-block form-text text-danger mt-2">This field is required and must have at least 3 characters</small>}
-            </Form.Group>   
+            </Form.Group>  
 
             <Form.Group className="mb-4" controlId="noticeDescription">
                 <Form.Label value={description}>Description</Form.Label>             
