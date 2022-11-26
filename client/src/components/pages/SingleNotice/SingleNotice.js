@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMGS_URL } from '../../../configs/config';
 import { getUser } from '../../../redux/usersReducer';
+import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../../config';
 
 //components
 import Row from 'react-bootstrap/Row';
@@ -18,6 +20,7 @@ const SingleNotice = () => {
     const { id } = useParams();
     const noticeData = useSelector(state => getNoticeById(state, id))
     const user = useSelector(getUser);
+    const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
 
@@ -25,7 +28,12 @@ const SingleNotice = () => {
     const handleClose = () => setShow(false);
     
     const handleDelete = e => {
-        dispatch(deleteNotices(id))
+        e.preventDefault()
+            const options = {
+        method: 'DELETE',
+        };
+        fetch(API_URL + 'api/ads/' + id, options);
+        navigate('/')
     }
 
     if(!noticeData) return <Navigate to="/" />
