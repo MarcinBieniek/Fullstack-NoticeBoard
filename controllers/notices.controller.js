@@ -101,13 +101,11 @@ exports.deleteDoc = async (req, res) => {
 
 exports.getSearchPhrase = async (req, res) => {
     try {
-      const searchObject = req.params.searchPhrase;
-      const notices = await Notice.find({ 
-        title: {$regex: searchObject, $options: 'i' }});
-      if (notices.length > 0) return res.json(notices);
-      return res.status(404).json({ message: 'Not found' });
+      const searchElement = await Notice.find({ $text: { $search: req.params.searchPhrase } });
+      if(!searchElement) res.status(404).json({ message: 'Not found' });
+      else res.json(searchElement);
     }
     catch(err) {
-      return res.status(500).json({ message: err });
+      res.status(500).json({ message: err });
     }
 };

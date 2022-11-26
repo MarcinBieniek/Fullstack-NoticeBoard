@@ -2,6 +2,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { getUser } from '../../../redux/usersReducer';
 import { useSelector } from 'react-redux';
+import SearchBar from '../../features/SearchBar/SearchBar';
 
 const NavBar = () => {
 
@@ -17,6 +18,8 @@ const NavBar = () => {
             </Navbar.Brand>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="float-right">
+                        
+                        <SearchBar />
 
                         { !user &&
                             <Nav.Link as={NavLink} to="/login">Sign In</Nav.Link>
@@ -25,7 +28,7 @@ const NavBar = () => {
                             <Nav.Link as={NavLink} to="/register">Sign Up</Nav.Link>
                         }
                         { user &&
-                            <h4>{"Hi " + user.login}</h4>
+                            <Nav.Link as={NavLink}>{"Hello " + user.login}</Nav.Link>
                         }
                         { user &&
                             <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>

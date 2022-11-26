@@ -3,12 +3,17 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { getUser } from '../../../redux/usersReducer';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'; 
+import { fetchNotices } from '../../../redux/noticesReducer';
 
 import NoticesList from '../../features/NoticesList/NoticesList'
 
 const Home = () => {
 
+  const dispatch = useDispatch();
   const user = useSelector(getUser)
+  useEffect(() => dispatch(fetchNotices(dispatch)), [dispatch])
 
   console.log('user is ', user)
   

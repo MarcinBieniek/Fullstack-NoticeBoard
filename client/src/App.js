@@ -31,7 +31,7 @@ function App() {
           <Route path="/notice/:id" element={<SingleNotice />} />
           <Route path="/notice/add" element={<AddNotice />} />
           <Route path="/notice/edit/:id" element={<EditNotice />} />
-          <Route path="/notice/search/:searchPhrase" element={<SearchPage />} />
+          <Route path="/searchResult/:searchPhrase" element={<SearchPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage/>} />
           <Route path="/logout" element={<LogoutPage/>} />
