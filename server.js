@@ -62,6 +62,10 @@ const authRoutes = require('./routes/auth.routes');
 app.use('/api', noticesRoutes);
 app.use('/auth', authRoutes);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 // error status
 app.use((req, res) => {
     res.status(404).send('404 not found...');
