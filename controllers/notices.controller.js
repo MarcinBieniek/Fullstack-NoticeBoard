@@ -59,28 +59,34 @@ exports.postDoc = async (req, res) => {
 exports.putDoc = async (req, res) => {
     const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date } = req.body;
     
+    console.log('reqbody is ', req.body)
+
     try {
         const notice = await Notice.findById(req.params.id);
-        if (!notice) return res.status(404).json({ message: 'Advert not found...'});
-        notice.title = title;
-        notice.description = description;
-        notice.location = location;
-        notice.price = price;
-        notice.bedrooms = bedrooms;
-        notice.bathrooms = bathrooms;
-        notice.rooms = rooms;
-        notice.meters = meters;
-        notice.user = user;
-        notice.date = date;
-        if (req.file) {
-            notice.image = req.file.filename;
-            //fs.unlinkSync(req.file.path);
-        }
-        await notice.save();
-        res.json({ message: 'Advert sucessfully updated!'})
-    } catch (err) {
-      req.status(500).json({ message: err.message });
-    }
+
+        console.log('notice is', notice)
+        
+        if (notice) {
+            notice.title = title;
+            notice.description = description;
+            notice.location = location;
+            notice.price = price;
+            notice.bedrooms = bedrooms;
+            notice.bathrooms = bathrooms;
+            notice.rooms = rooms;
+            notice.meters = meters;
+            notice.user = user;
+            if (req.file) {
+              notice.photo = req.file.filename;
+            }
+            const updatedNotice = await notice.save();
+            res.json(updatedNotice);
+        } else 
+        res.status(404).json({ message: 'Not found...' });
+      }
+      catch(err) {
+        res.status(500).json({ message: err });
+      }
 };
 
 exports.deleteDoc = async (req, res) => {
@@ -96,8 +102,6 @@ exports.deleteDoc = async (req, res) => {
       res.status(500).json({ message: err });
     }
 };
-
-// to do - GET /api/ads/search/:searchPhrase – który zwróci ogłoszenia pasujące tytułem do podanej frazy
 
 exports.getSearchPhrase = async (req, res) => {
     try {

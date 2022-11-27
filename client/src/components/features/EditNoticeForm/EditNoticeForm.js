@@ -1,11 +1,11 @@
 // react
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editNotices, fetchNotices } from '../../../redux/noticesReducer';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { getNoticeById } from '../../../redux/noticesReducer';
 import { Navigate } from 'react-router-dom';
+import { API_URL } from '../../../config';
 
 // components
 import NoticeForm from '../NoticeForm/NoticeForm';
@@ -18,7 +18,6 @@ const EditNoticeForm = () => {
     const { id } = useParams();
 
     const handleSubmit = (notice) => {
-        dispatch(editNotices({ ...notice, id }));
 
         const editedData = new FormData(); 
         editedData.append('title', notice.title);
@@ -32,16 +31,16 @@ const EditNoticeForm = () => {
         editedData.append('photo', notice.photo);
         editedData.append('user', notice.user);
 
-        console.log('id is', id)
-        console.log('notice is', notice)
-        console.log('editedData is', editedData)
-
         const options = {
             method: 'PUT',
             body: editedData,
         };
-        fetch(`http://localhost:8000/api/ads/${id}`, options);
-        navigate('/');
+        fetch(API_URL + 'api/ads/' + id, options)
+            .then(res => {
+                if (res.status === 200) {
+                setTimeout(() => navigate('/'), 1000);
+                }
+            });
     };
 
     const actionText = "Edit post";

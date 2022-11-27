@@ -3,10 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { getUser } from '../../../redux/usersReducer';
 import { useSelector } from 'react-redux';
 import SearchBar from '../../features/SearchBar/SearchBar';
+import { IMGS_URL } from '../../../configs/config';
 
 const NavBar = () => {
 
     const user = useSelector(getUser);
+    console.log('user avatar is ')
 
     return (
         <main>
@@ -28,7 +30,10 @@ const NavBar = () => {
                             <Nav.Link as={NavLink} to="/register">Sign Up</Nav.Link>
                         }
                         { user &&
-                            <Nav.Link as={NavLink}>{"Hello " + user.login}</Nav.Link>
+                            <Nav.Link as={NavLink}>
+                                {"Hello " + user.login}
+                                
+                                </Nav.Link>
                         }
                         { user &&
                             <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>

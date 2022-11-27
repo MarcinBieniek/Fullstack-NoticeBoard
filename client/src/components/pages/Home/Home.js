@@ -7,15 +7,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'; 
 import { fetchNotices } from '../../../redux/noticesReducer';
 
-import NoticesList from '../../features/NoticesList/NoticesList'
+import NoticesList from '../../features/NoticesList/NoticesList';
 
 const Home = () => {
 
   const dispatch = useDispatch();
   const user = useSelector(getUser)
   useEffect(() => dispatch(fetchNotices(dispatch)), [dispatch])
-
-  console.log('user is ', user)
   
   return (
     <main>
