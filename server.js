@@ -5,6 +5,7 @@ const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 // start express server
 const app = express(); 
