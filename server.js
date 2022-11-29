@@ -23,9 +23,7 @@ else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NoticeBoard';
 else dbUri = 'mongodb://localhost:27017/NoticeBoard';
 */
 
-const dbUri = 
-'mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority';
-'mongodb+srv://MarcinEden:<password>@cluster1.sg1w6lh.mongodb.net/?retryWrites=true&w=majority'
+const dbUri = 'mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority';
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -39,11 +37,16 @@ db.on('error', err => console.log('Error ' + err));
 if(process.env.NODE_ENV !== 'production') {
   app.use(
     cors({
-      origin: ['http://localhost:3000'],
+      origin: [
+      'http://localhost:3000',
+      'http://localhost:8000',
+      'https://lit-wave-35985.herokuapp.com',
+      ],
       credentials: true,
     })
   );
 }
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ 
