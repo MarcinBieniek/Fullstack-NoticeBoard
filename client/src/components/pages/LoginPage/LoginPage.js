@@ -50,6 +50,7 @@ const LoginPage = () => {
     <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
       
       <h1>Sign in</h1>
+      <p>Demo access - login: JohnDoe, password: admin1</p>
 
       { status === "success" && (
         <Alert variant="success">
