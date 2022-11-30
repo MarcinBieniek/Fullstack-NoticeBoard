@@ -73,7 +73,7 @@ const authRoutes = require('./routes/auth.routes');
 app.use('/api', noticesRoutes);
 app.use('/auth', authRoutes);
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
