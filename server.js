@@ -61,9 +61,9 @@ app.use(session({
 }))
 
 // access to storage folder
-app.use(express.static(path.join(__dirname, '/client/build')));
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/uploads/')));
+app.use(express.static(path.join(__dirname, './client/build')));
+app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './uploads/')));
 
 // import routes
 const noticesRoutes = require('./routes/notices.routes');
@@ -73,7 +73,7 @@ const authRoutes = require('./routes/auth.routes');
 app.use('/api', noticesRoutes);
 app.use('/auth', authRoutes);
 
-app.get('/client/build/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
