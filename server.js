@@ -34,7 +34,7 @@ db.once('open', () => {
 db.on('error', err => console.log('Error ' + err));
 
 // add middleware
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV !== 'production') {
   app.use(
     cors({
       origin: [
@@ -80,6 +80,4 @@ app.use((req, res) => {
     res.status(404).send('404 not found...');
 })
 
-// middleware to store sessions in mongoDB 
-//app.use(session({ secret: 'xyz567', store: MongoStore.create({mongoUrl: dbUri})}));
 
