@@ -15,18 +15,17 @@ app.listen(process.env.PORT || 8000, () => {
 
 // connect to db 
 const NODE_ENV = process.env.NODE_ENV;
-/*let dbUri = '';
+const DB_URL = process.env.DB_URL;
+let dbUri = '';
 
 if(NODE_ENV === 'production') dbUri = process.env.DB_URL;
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NoticeBoard';
-else dbUri = 'mongodb://localhost:27017/NoticeBoard';*/
+else dbUri = 'mongodb://localhost:27017/NoticeBoard';
 
-const MONGO_USER = process.env.USERDB;
-const MONGO_PASS = process.env.PASSDB;
-
-const dbUri = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority`;
-
-mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbUri, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+});
 const db = mongoose.connection;
 
 db.once('open', () => {
