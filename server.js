@@ -61,9 +61,9 @@ app.use(session({
 }))
 
 // access to storage folder
-app.use(express.static(path.join(__dirname, './client/build')));
-app.use(express.static(path.join(__dirname, './public')));
-app.use(express.static(path.join(__dirname, './uploads/')));
+app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/uploads/')));
 
 // import routes
 const noticesRoutes = require('./routes/notices.routes');
