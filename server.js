@@ -34,7 +34,7 @@ db.once('open', () => {
 db.on('error', err => console.log('Error ' + err));
 
 // add middleware
-if(process.env.NODE_ENV !== 'production') {
+if(process.env.NODE_ENV === 'production') {
   app.use(
     cors({
       origin: [
@@ -45,8 +45,7 @@ if(process.env.NODE_ENV !== 'production') {
       credentials: true,
     })
   );
-}
-
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ 
