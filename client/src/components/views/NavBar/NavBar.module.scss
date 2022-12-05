@@ -1,0 +1,83 @@
+@import '../../../styles/settings.scss';
+
+.topMenu_container {
+    width: 100%;
+    height: 10vh;
+    margin: 20px;
+
+    .content {
+        margin: 0 auto;
+        width: 80vw;
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+
+        .leftContent {
+            display: flex;
+            align-items: center;
+            
+            a {
+                text-decoration: none;
+                :first-of-type { 
+                    color: $color-black;
+                }
+            }
+
+            .logo {
+                height: 40%;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                padding-right: 20px;
+                border-right: 2px solid $color-grey; 
+
+                :first-child {
+                    font-size: 18px;
+                    margin: 0;
+                    color: $color-blue;
+                }
+
+                h1 {
+                    font-size: 16px;
+                    margin: 3px 0 0 10px;
+                }
+            }
+
+            .leftMenu {
+                display: flex;
+            }
+        }
+
+        .rightContent {
+            display: flex;
+
+            .rightMenu {
+                display: flex;
+                align-items: center;                
+
+                .userIcon {
+                    padding: 5px 15px 5px 0;
+                    border-right: 2px solid $color-grey;
+                    color: $color-blue;
+                }
+
+                .menuItem {
+                    padding: 0 20px;
+                    color: $color-darkGrey;
+                    flex-direction: row;
+                    align-items: center;
+
+                    a {
+                        text-decoration: none;
+                        color: $color-darkGrey;
+                        font-size: 14px;
+                    }
+
+                    &:hover a {
+                        color: $color-blue;
+                    }
+                }
+            }
+        }
+    }
+}

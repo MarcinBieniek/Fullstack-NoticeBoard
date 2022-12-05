@@ -1,31 +1,34 @@
 import { useState } from 'react';
-import { API_URL } from '../../../config';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const SearchBar = () => {
+import styles from './SearchBar.module.scss';
 
-    const dispatch = useDispatch();
+const SearchBarTest = () => {
+
     const [searchValue, setSearchValue] = useState('');
 
     return (
-        <div>
+        <div className={styles.searchBar}>
             <Form className='d-flex'>
-                <Form.Control
+                <Button className={styles.searchButton} as={Link} to={'/searchResult/' + searchValue}>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </Button>
+                <input
                     type='search'
                     placeholder='Search'
                     className='me-2'
                     aria-label='Search'
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
-                <Button variant='primary' as={Link} to={'/searchResult/' + searchValue}>
-                    Search
-                </Button>
             </Form>
         </div>
-    );
-};
+    )
+    
+}
 
-export default SearchBar;
+export default SearchBarTest;

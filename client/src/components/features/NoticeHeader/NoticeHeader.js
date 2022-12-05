@@ -11,6 +11,8 @@ const NoticeHeader = props => {
 
     const user = useSelector(getUser);
 
+    console.log('imgsurl2', IMGS_URL)
+
     return (
         <Col>
             <Card className="p-2 mt-3">

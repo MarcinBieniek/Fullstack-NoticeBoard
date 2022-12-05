@@ -16,6 +16,8 @@ import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import LogoutPage from './components/pages/LogoutPage/LogoutPage';
 import NotFound from './components/pages/NotFound/NotFound';
 
+import './styles/global.scss';
+
 function App() {
 
   const dispatch = useDispatch();
