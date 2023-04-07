@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchNotices } from './redux/noticesReducer';
+import './styles/global.scss';
 
-import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import SingleNotice from './components/pages/SingleNotice/SingleNotice';
@@ -15,8 +15,7 @@ import LoginPage from './components/pages/LoginPage/LoginPage';
 import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import LogoutPage from './components/pages/LogoutPage/LogoutPage';
 import NotFound from './components/pages/NotFound/NotFound';
-
-import './styles/global.scss';
+import TopBar from './components/views/TopBar/TopBar';
 
 function App() {
 
@@ -26,7 +25,7 @@ function App() {
 
   return (
     <main>
-      <Header />
+      <TopBar />
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
