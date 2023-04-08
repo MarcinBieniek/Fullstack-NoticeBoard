@@ -3,11 +3,9 @@
 .container {
   width: 100%;
   height: 70px;
-  background-color: antiquewhite;
 
   .wrapper {
     height: 100%;
-    background-color: red;
     padding: 0px 50px;
     display: flex;
     justify-content: space-between;
@@ -20,7 +18,6 @@
       a {
         font-size: 24px;
         font-weight: 600;
-        margin-left: 5px;
         cursor: pointer;
         text-decoration: none;
         color: $black;

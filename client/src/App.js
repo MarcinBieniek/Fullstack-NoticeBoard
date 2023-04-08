@@ -16,6 +16,7 @@ import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import LogoutPage from './components/pages/LogoutPage/LogoutPage';
 import NotFound from './components/pages/NotFound/NotFound';
 import TopBar from './components/views/TopBar/TopBar';
+import HomeNew from './components/pages/HomeNew/HomeNew';
 
 function App() {
 
@@ -26,20 +27,17 @@ function App() {
   return (
     <main>
       <TopBar />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/notice/:id" element={<SingleNotice />} />
-          <Route path="/notice/add" element={<AddNotice />} />
-          <Route path="/notice/edit/:id" element={<EditNotice />} />
-          <Route path="/searchResult/:searchPhrase" element={<SearchPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage/>} />
-          <Route path="/logout" element={<LogoutPage/>} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </Container>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomeNew />} />
+        <Route path="/notice/:id" element={<SingleNotice />} />
+        <Route path="/notice/add" element={<AddNotice />} />
+        <Route path="/notice/edit/:id" element={<EditNotice />} />
+        <Route path="/searchResult/:searchPhrase" element={<SearchPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/logout" element={<LogoutPage/>} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </main>  
   );
 }
