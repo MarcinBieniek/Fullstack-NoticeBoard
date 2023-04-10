@@ -1,12 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchNotices } from './redux/noticesReducer';
 import './styles/global.scss';
+import './styles/others.css'
 
-import Footer from './components/views/Footer/Footer';
-import Home from './components/pages/Home/Home';
 import SingleNotice from './components/pages/SingleNotice/SingleNotice';
 import AddNotice from './components/pages/AddNotice/AddNotice';
 import EditNotice from './components/pages/EditNotice/EditNotice';

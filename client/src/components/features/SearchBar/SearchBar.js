@@ -21,7 +21,6 @@ const SearchBarTest = () => {
                 <input
                     type='search'
                     placeholder='Search'
-                    className='me-2'
                     aria-label='Search'
                     onChange={(e) => setSearchValue(e.target.value)}
                 />

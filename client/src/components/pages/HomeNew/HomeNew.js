@@ -6,14 +6,77 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import SearchBar from '../../features/SearchBar/SearchBar';
+import AddIcon from '@mui/icons-material/Add';
+import { Link } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { Icon } from "leaflet";
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 const HomeNew = () => {
+
+  const markers = [
+    {
+      geocode: [52.520008, 13.404954],
+      popup: "Hello, popup1"
+    },
+    {
+      geocode: [52.530007, 13.404954],
+      popup: "Hello, popup1"
+    },
+    {
+      geocode: [52.520006, 13.414954],
+      popup: "Hello, popup1"
+    } 
+  ]
+
+  const customIcon = new Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
+    iconSize: (40, 40),
+  })
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          left
+          <div className={styles.top}>
+            <Link to="/">
+              <button>
+                <span>Add new offer</span>
+                <AddIcon className={styles.icon}/>
+              </button>
+            </Link>
+            <SearchBar /> 
+          </div>
+          <div className={styles.map}>
+            <MapContainer 
+              center={[52.520008, 13.404954]}
+              zoom={13}  
+            >
+              <TileLayer 
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+
+              <MarkerClusterGroup
+                chunkedLoading
+              >
+                {markers.map(marker => (
+                  <Marker 
+                    position={marker.geocode}
+                    icon={customIcon}
+                  >
+                    <Popup>{marker.popup}</Popup>
+                  </Marker>
+                ))}
+              </MarkerClusterGroup>
+
+            </MapContainer>
+          </div>
         </div>
+
+
         <div className={styles.right}>
           
           <div className={styles.last_offer}>
