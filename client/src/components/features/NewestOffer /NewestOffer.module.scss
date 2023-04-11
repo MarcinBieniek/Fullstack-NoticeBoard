@@ -1,0 +1,107 @@
+@import '../../../styles/settings.scss';
+
+.last_offer {
+  display: flex;
+  border-bottom: 1px solid $grey;
+  padding-bottom: 20px;
+
+  .image {
+    img {
+      border-radius: 15px;
+      width: 250px;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .description {
+    padding-left: 20px;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .share {
+        color: $color-darkGrey;
+
+        span {
+          font-weight: 400;
+          padding-right: 10px;
+        }
+
+        &:hover {
+          color: $black;
+        }
+      } 
+    }
+
+    h1 {
+      font-size: 20px;
+      padding: 20px 0px 10px;
+    }
+
+    .location {
+      font-size: 12px;
+      font-weight: 500;
+
+      .icon {
+        color: $color-darkGrey;
+
+      }
+    }
+
+    .numbers {
+      display: flex;
+      justify-content: space-between;
+      background-color: $light-grey;
+      border-radius: 15px;
+      padding: 5px 10px;
+      margin: 10px 0px;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      span {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+    }
+
+    p {
+      font-size: 12px;
+      margin: 10px 0px;
+    }
+
+    .price {
+      font-size: 12px;
+      font-weight: 600;
+
+      .number {
+        font-size: 20px;
+      }
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      margin-top: 10px;
+      padding: 10px 40px;
+      border-radius: 10px;
+      background-color: $black;
+      color: white;
+      font-size: 12px;
+
+      &:hover {
+        background-color: $color-darkGrey;
+      }
+    }
+  }
+}
