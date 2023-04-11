@@ -90,6 +90,7 @@
       background-color: white;
       border-radius: 15px;
       padding: 20px;
+      height: 620px;
 
       .top {
         display: flex;
@@ -120,6 +121,22 @@
           }
         }
       }
+    }
+  }
+}
+
+.modal {
+  button {
+    background-color: $black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 15px;
+
+    a {
+      color: white;
+      text-decoration: none;
     }
   }
 }
