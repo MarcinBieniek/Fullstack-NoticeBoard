@@ -66,7 +66,7 @@ const PostForm = ({
     return (
         <Form onSubmit={validate(handleSubmit)}>
             
-            <Form.Group className="mb-3 w-50" controlId="noticeTitle">
+            <Form.Group className="mb-3" controlId="noticeTitle">
                 <Form.Label>Title</Form.Label>
                 <Form.Control 
                     {...register("title", { required: true, minLength: 3 })}
@@ -78,7 +78,7 @@ const PostForm = ({
                 {errors.title && <small className="d-block form-text text-danger mt-2">This field is required and must have at least 3 characters</small>}
             </Form.Group>
             
-            <Form.Group className="mb-3 w-50" controlId="noticeLocation">
+            <Form.Group className="mb-3" controlId="noticeLocation">
                 <Form.Label>Location</Form.Label>
                 <Form.Control 
                     {...register("location", { required: true, minLength: 1 })}
@@ -89,7 +89,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
             
-            <Form.Group className="mb-3 w-50" controlId="noticePrice">
+            <Form.Group className="mb-3" controlId="noticePrice">
                 <Form.Label>Price</Form.Label>
                 <Form.Control 
                     {...register("price", { required: true, minLength: 1 })}
@@ -100,7 +100,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="noticeBedrooms">
+            <Form.Group className="mb-3" controlId="noticeBedrooms">
                 <Form.Label>Bedrooms</Form.Label>
                 <Form.Control 
                     {...register("bedrooms", { required: true, minLength: 1 })}
@@ -111,7 +111,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="noticeBathrooms">
+            <Form.Group className="mb-3" controlId="noticeBathrooms">
                 <Form.Label>Bathrooms</Form.Label>
                 <Form.Control 
                     {...register("bathrooms", { required: true, minLength: 1 })}
@@ -122,7 +122,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="noticeRooms">
+            <Form.Group className="mb-3" controlId="noticeRooms">
                 <Form.Label>Rooms</Form.Label>
                 <Form.Control 
                     {...register("rooms", { required: true, minLength: 1 })}
@@ -133,7 +133,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="noticeMeters">
+            <Form.Group className="mb-3" controlId="noticeMeters">
                 <Form.Label>Meters</Form.Label>
                 <Form.Control 
                     {...register("meters", { required: true, minLength: 1 })}
@@ -144,7 +144,7 @@ const PostForm = ({
                 {errors.des && <small className="d-block form-text text-danger mt-2">This field is required</small>}
             </Form.Group>
 
-            <Form.Group className="mb-3 w-50" controlId="photo">
+            <Form.Group className="mb-3" controlId="photo">
                 <Form.Label>Photo</Form.Label>
                 <Form.Control 
                     type='file'
@@ -165,7 +165,7 @@ const PostForm = ({
                 {contentError && <small className="d-block form-text text-danger mt-2">Content can't be empty</small>}
             </Form.Group>
 
-            <Button as="input" type="submit" value={actionText} />
+            <Button as="input" type="submit" value={actionText} variant="warning"/>
         </Form>
     )
 }

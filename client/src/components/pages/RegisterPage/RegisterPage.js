@@ -5,6 +5,7 @@ import { API_URL } from '../../../config';
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
+import Stack from 'react-bootstrap/Stack';
 
 const RegisterPage = () => {
 
@@ -47,87 +48,90 @@ const RegisterPage = () => {
   }
 
   return (
-    <Form className="w-50 mx-auto" onSubmit={handleSubmit}>
+    <Stack className="col-10 col-md-5 mt-5 mb-5 mx-auto">
 
-      <h1>Sign up</h1>
+      <h1 className="mx-auto">Sign up</h1>
 
-      { status === "success" && (
-        <Alert variant="success">
-          <Alert.Heading>Success!</Alert.Heading>
-          <p>You have been successfully registered! You can now log in...</p>
-        </Alert>
-      )}
+      <Form onSubmit={handleSubmit}>
 
-      { status === "serverError" && (  
-        <Alert variant="danger">
-          <Alert.Heading>Something went wrong...</Alert.Heading>
-          <p>Unexpected error... Try again!</p>
-        </Alert>
-      )}
+        { status === "success" && (
+          <Alert variant="success">
+            <Alert.Heading>Success!</Alert.Heading>
+            <p>You have been successfully registered! You can now log in...</p>
+          </Alert>
+        )}
 
-      {status === "clientError" && (
-        <Alert variant="danger">
-          <Alert.Heading>Not enough data</Alert.Heading>
-          <p>You have to fill all the fields.</p>
-        </Alert>
-      )}
+        { status === "serverError" && (  
+          <Alert variant="danger">
+            <Alert.Heading>Something went wrong...</Alert.Heading>
+            <p>Unexpected error... Try again!</p>
+          </Alert>
+        )}
 
-      {status === "loginError" && (
-        <Alert variant="warning">
-          <Alert.Heading>Login is already in use</Alert.Heading>
-          <p>Use different login</p>
-        </Alert>
-      )}
+        {status === "clientError" && (
+          <Alert variant="danger">
+            <Alert.Heading>Not enough data</Alert.Heading>
+            <p>You have to fill all the fields.</p>
+          </Alert>
+        )}
 
-      { status === "loading" && (
-        <Spinner animation="border" role="status" className="d-block mx-auto">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+        {status === "loginError" && (
+          <Alert variant="warning">
+            <Alert.Heading>Login is already in use</Alert.Heading>
+            <p>Use different login</p>
+          </Alert>
+        )}
 
-      <Form.Group className="mb-3" controlId="formLogin">
-        <Form.Label>Login</Form.Label>
-        <Form.Control 
-          type="text" 
-          value={login} 
-          onChange={e => setLogin(e.target.value)} 
-          placeholder="Enter login" 
-        />
-      </Form.Group>
+        { status === "loading" && (
+          <Spinner animation="border" role="status" className="d-block mx-auto">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
 
-      <Form.Group className="mb-3" controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control 
-          type="password" 
-          value={password} 
-          onChange={e => setPassword(e.target.value)} 
-          placeholder="Password" 
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formLogin">
+          <Form.Label>Login</Form.Label>
+          <Form.Control 
+            type="text" 
+            value={login} 
+            onChange={e => setLogin(e.target.value)} 
+            placeholder="Enter login" 
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formPhone">
-        <Form.Label>Phone number</Form.Label>
-        <Form.Control 
-          type="tel" 
-          value={phone} 
-          onChange={e => setPhone(e.target.value)} 
-          placeholder="Phone number" 
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control 
+            type="password" 
+            value={password} 
+            onChange={e => setPassword(e.target.value)} 
+            placeholder="Password" 
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formFile">
-        <Form.Label>Select avatar</Form.Label>
-        <Form.Control 
-          type="file" 
-          onChange={e => setAvatar(e.target.files[0])}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formPhone">
+          <Form.Label>Phone number</Form.Label>
+          <Form.Control 
+            type="tel" 
+            value={phone} 
+            onChange={e => setPhone(e.target.value)} 
+            placeholder="Phone number" 
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+        <Form.Group className="mb-3" controlId="formFile">
+          <Form.Label>Select avatar</Form.Label>
+          <Form.Control 
+            type="file" 
+            onChange={e => setAvatar(e.target.files[0])}
+          />
+        </Form.Group>
 
-    </Form>
+        <Button variant="primary" type="submit" variant="warning">
+          Submit
+        </Button>
+
+      </Form>
+    </Stack>
   );
 };
 

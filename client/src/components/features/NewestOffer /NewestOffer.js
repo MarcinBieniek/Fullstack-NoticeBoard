@@ -10,6 +10,7 @@ import ChairIcon from '@mui/icons-material/Chair';
 import { IMGS_URL } from '../../../configs/config';
 import { getUser } from '../../../redux/usersReducer';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const NewestOffer = (notices) => {
 
@@ -51,7 +52,7 @@ const NewestOffer = (notices) => {
           </div>
           <div className={styles.number}>
             <AspectRatioIcon className={styles.icon}/>
-            <span>{newestNotice?.meters} m</span>
+            <span>{newestNotice?.meters}m</span>
           </div>
         </div>
         <p>{newestNotice?.description}</p>
@@ -65,7 +66,13 @@ const NewestOffer = (notices) => {
 
           {newestNotice?.user === user?.login && 
             <div className={styles.hidden_buttons}>
-              <button>Edit</button>
+              
+              <button>
+                <Link to={`/notice/edit/${newestNotice?._id}`}>
+                  Edit
+                </Link>
+              </button>
+              
               <button>Delete</button>
             </div> 
           }

@@ -1,17 +1,15 @@
 import React from 'react';
 
-import Row from 'react-bootstrap/Row';
+import Stack from 'react-bootstrap/Stack';
 import AddNoticeForm from '../../features/AddNoticeForm/AddNoticeForm';
 
 const AddNotice = () => {
   
   return (
-    <Row className="d-flex align-items-center justify-content-center">
-      <div className="w-75">             
-        <h1 className="mb-4">Add Post</h1>
-        <AddNoticeForm />
-      </div>
-    </Row>
+    <Stack gap={3} className="col-10 col-md-5 mt-5 mb-5 mx-auto">            
+      <h1 className="mx-auto">Add new offer</h1>
+      <AddNoticeForm />
+    </Stack>
   );
 };
 

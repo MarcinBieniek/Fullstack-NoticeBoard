@@ -1,17 +1,15 @@
 import React from 'react';
 
-import Row from 'react-bootstrap/Row';
+import Stack from 'react-bootstrap/Stack';
 import EditNoticeForm from '../../features/EditNoticeForm/EditNoticeForm';
 
 const EditNotice = () => {
   
   return (
-    <Row className="d-flex align-items-center justify-content-center">
-      <div className="w-75">             
-        <h1 className="mb-4">Edit Offer</h1>
-        <EditNoticeForm />
-      </div>
-    </Row>
+    <Stack gap={3} className="col-10 col-md-5 mt-5 mb-5 mx-auto">            
+      <h1 className="mx-auto">Edit offer</h1>
+      <EditNoticeForm />
+    </Stack>
   );
 };
 

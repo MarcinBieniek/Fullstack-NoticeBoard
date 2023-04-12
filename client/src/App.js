@@ -15,6 +15,7 @@ import LogoutPage from './components/pages/LogoutPage/LogoutPage';
 import NotFound from './components/pages/NotFound/NotFound';
 import TopBar from './components/views/TopBar/TopBar';
 import HomeNew from './components/pages/HomeNew/HomeNew';
+import Contact from './components/pages/Contact/Contact';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/logout" element={<LogoutPage/>} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </main>  

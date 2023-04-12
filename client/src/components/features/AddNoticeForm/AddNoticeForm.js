@@ -25,8 +25,6 @@ const AddNoticeForm = () => {
         formData.append('user', notice.user);
         formData.append('date', notice.date);
 
-        console.log('add formData is', formData)
-
         const options = {
             method: 'POST',
             body: formData,
