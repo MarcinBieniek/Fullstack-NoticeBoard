@@ -155,10 +155,11 @@ const PostForm = ({
 
             <Form.Group className="mb-4" controlId="noticeDescription">
                 <Form.Label value={description}>Description</Form.Label>             
-                <ReactQuill
-                    theme="snow"   
+                <Form.Control
+                    {...register("description", { required: true, minLength: 3 })}  
                     value={description} 
-                    onChange={setDescription}
+                    onChange={e => setDescription(e.target.value)} 
+                    type="text"
                     placeholder="Type here" 
                 />
                 {contentError && <small className="d-block form-text text-danger mt-2">Content can't be empty</small>}

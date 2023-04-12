@@ -8,7 +8,7 @@ import SearchBar from '../../features/SearchBar/SearchBar';
 import AddIcon from '@mui/icons-material/Add';
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import Map from '../../features/Map/Map';
 import NewestOffer from '../../features/NewestOffer /NewestOffer';
@@ -16,10 +16,15 @@ import { getUser } from '../../../redux/usersReducer';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Modal from 'react-bootstrap/Modal';
+import { fetchNotices } from '../../../redux/noticesReducer';
+import {getAllNotices} from '../../../redux/noticesReducer';
 
 const HomeNew = () => {
 
-  const user = useSelector(getUser)
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  useEffect(() => dispatch(fetchNotices(dispatch)), [dispatch]);
+  const notices = useSelector(state => getAllNotices(state));
 
   const [show, setShow] = useState(false);
 
@@ -35,7 +40,7 @@ const HomeNew = () => {
           <Col md={12} lg={6} className={styles.left}>
 
             <Row>
-              <NewestOffer />
+              <NewestOffer notices={notices}/>
             </Row>
 
             <Row xl={3} lg={3} md={1} sm={1} xs={1} className={styles.offers}>
@@ -161,30 +166,24 @@ const HomeNew = () => {
             <div className={styles.top}>
 
               {user ?
-
-              <Link to="/notice/add">
-                <button>
-                  <span>Add new offer</span>
-                  <AddIcon className={styles.icon}/>
-                </button>
-              </Link>
-
+                <Link to="/notice/add">
+                  <button>
+                    <span>Add new offer</span>
+                    <AddIcon className={styles.icon}/>
+                  </button>
+                </Link>
               :
-
-              <Link to="/">
-                <button onClick={handleShow}>
-                  <span>Add new offer</span>
-                  <AddIcon className={styles.icon}/>
-                </button>
-              </Link>
-
+                <Link to="/">
+                  <button onClick={handleShow}>
+                    <span>Add new offer</span>
+                    <AddIcon className={styles.icon}/>
+                  </button>
+                </Link>
               }
 
               <SearchBar /> 
             </div>
-
             <Map />
-            
           </Col>
         </div>
       </Row>
@@ -199,7 +198,7 @@ const HomeNew = () => {
       <Modal.Header>
         <Modal.Title>Please login</Modal.Title>
       </Modal.Header>
-      <Modal.Body>This option is available only for logged users. <br />Please register or login.</Modal.Body>
+      <Modal.Body>This option is available only for logged users. <br/>Please register or login.</Modal.Body>
       <Modal.Footer>
         <button variant="primary" onClick={handleClose}>
           <Link to="/register">

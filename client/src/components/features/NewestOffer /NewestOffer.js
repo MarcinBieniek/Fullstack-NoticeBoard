@@ -2,16 +2,26 @@ import styles from './NewestOffer.module.scss';
 
 import ShareIcon from '@mui/icons-material/Share';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import BedIcon from '@mui/icons-material/Bed';
 import BathtubIcon from '@mui/icons-material/Bathtub';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import ChairIcon from '@mui/icons-material/Chair';
 
-const NewestOffer = () => {
+import { IMGS_URL } from '../../../configs/config';
+import { getUser } from '../../../redux/usersReducer';
+import { useSelector } from 'react-redux';
+
+const NewestOffer = (notices) => {
+
+  const user = useSelector(getUser);
+
+  const allNotices = notices.notices;
+  const newestNotice = allNotices[allNotices.length -1 ];
+  
   return (
     <div className={styles.last_offer}>
       <div className={styles.image}>
-        <img src={`${process.env.PUBLIC_URL}/images/flat1.webp`} alt="Main photo" /> 
+        <img src={`${IMGS_URL}/${newestNotice?.photo}`} alt="Main photo" /> 
       </div>   
       <div className={styles.description}>
         <div className={styles.header}>
@@ -21,38 +31,49 @@ const NewestOffer = () => {
             <ShareIcon />
           </div>
         </div>
-        <h1>Cosy apartment for rent</h1>
+        <h1>{newestNotice?.title}</h1>
         <div className={styles.location}>
           <LocationOnIcon className={styles.icon}/>
-          <span>164 A Route du Vallion, 08300 Nice</span>
+          <span>{newestNotice?.location}</span>
         </div>
         <div className={styles.numbers}>
           <div className={styles.number}>
             <BedIcon className={styles.icon}/>
-            <span>2</span>
+            <span>{newestNotice?.bedrooms}</span>
           </div>
           <div className={styles.number}>
             <BathtubIcon className={styles.icon}/>
-            <span>1</span>
+            <span>{newestNotice?.bathrooms}</span>
           </div>
           <div className={styles.number}>
-            <DirectionsCarIcon className={styles.icon}/>
-            <span>2</span>
+            <ChairIcon className={styles.icon}/>
+            <span>{newestNotice?.rooms}</span>
           </div>
           <div className={styles.number}>
             <AspectRatioIcon className={styles.icon}/>
-            <span>67m</span>
+            <span>{newestNotice?.meters} m</span>
           </div>
         </div>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-        <p>Author: Marcin</p>
+        <p>{newestNotice?.description}</p>
+        <p>Author: {newestNotice?.user}</p>
         <div className={styles.price}>
           <span>Rental price: 
-            <span className={styles.number}> $80</span> / night</span>
+            <span className={styles.number}> {newestNotice?.price}€</span> / month</span>
         </div>
-        <button>See details</button>
+        <div className={styles.buttons}>
+          <button>See details</button>
+
+          {newestNotice?.user === user?.login && 
+            <div className={styles.hidden_buttons}>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div> 
+          }
+        </div>
       </div>
     </div>
+
+
   )
 }
 
