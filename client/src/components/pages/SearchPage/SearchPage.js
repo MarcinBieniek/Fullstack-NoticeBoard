@@ -1,26 +1,29 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { getAllNotices, fetchAdvertBySearchPhrase } from '../../../redux/noticesReducer';
+import { useSelector } from 'react-redux';
+import { getAllNotices } from '../../../redux/noticesReducer';
+import { searchInputValue } from '../../../redux/searchRedux';
+import { getUser } from '../../../redux/usersReducer';
+import OfferSmallCard from '../../features/OfferSmallCard/OfferSmallCard';
 
-import NoticeHeader from '../../features/NoticeHeader/NoticeHeader';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const SearchPage = () => {  
-    const { searchPhrase } = useParams();
-    const dispatch = useDispatch();
-    const notices = useSelector(getAllNotices);
 
-    useEffect(() => {
-      dispatch(fetchAdvertBySearchPhrase(searchPhrase));
-    }, []);
+    const search = useSelector(searchInputValue);
+    const user = useSelector(getUser);
+
+    const filteredSearch = useSelector(getAllNotices).filter(offer => 
+        offer.title.toLowerCase().includes(search.toLowerCase()) ||
+        offer.location.toLowerCase().includes(search.toLowerCase()) 
+    )
+
+    console.log('filteredsearch is', filteredSearch)
 
     return (
         <Row xs={1} md={4} className='g-3 my-5'>
-            {notices.map((notice) => (
+            {filteredSearch.map((notice) => (
                 <Col key={notice._id}>
-                    <NoticeHeader {...notice} />
+                    <OfferSmallCard notice={notice} user={user}/>
                 </Col>
             ))}
         </Row>
