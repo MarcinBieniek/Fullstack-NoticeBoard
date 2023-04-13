@@ -1,22 +1,24 @@
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getNoticeById, deleteNotices } from '../../../redux/noticesReducer';
+import { getNoticeById } from '../../../redux/noticesReducer';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IMGS_URL } from '../../../configs/config';
 import { getUser } from '../../../redux/usersReducer';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../../config';
+import styles from './SingleNotice.module.scss';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import BedIcon from '@mui/icons-material/Bed';
+import BathtubIcon from '@mui/icons-material/Bathtub';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import ChairIcon from '@mui/icons-material/Chair';
 
-//components
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const SingleNotice = () => {
-    const dispatch = useDispatch();
+
     const { id } = useParams();
     const noticeData = useSelector(state => getNoticeById(state, id))
     const user = useSelector(getUser);
@@ -39,45 +41,70 @@ const SingleNotice = () => {
     if(!noticeData) return <Navigate to="/" />
     else return (
         <>
-            <Row className="d-flex align-items-center justify-content-center">
-                <div className="w-75">
-                    <div className="d-flex justify-content-between mb-4">
-                        <h1>{noticeData.title}</h1>
-                        
-                        { user && user.login === noticeData.user &&
-                        <div>
-                            <Link to={`/notice/edit/${id}`}>    
-                                <Button variant="outline-info">Edit</Button>
-                            </Link>
-                            <Button variant="outline-danger" className="ms-2" onClick={handleShow}>Delete</Button>
-                        </div>  
-                        }
 
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <img src={`${IMGS_URL}/${noticeData.photo}`} alt="photo" />
+                    <div className={styles.info}>
+
+                        <div className={styles.description}>
+                            <div className={styles.header}>
+                                <h1>{noticeData.title}</h1>
+                                <div className={styles.buttons}>
+                                    { user && user.login === noticeData.user &&
+                                        <>
+                                            <Link to={`/notice/edit/${id}`}>    
+                                                <button variant="outline-info">Edit</button>
+                                            </Link>
+                                            <button onClick={handleShow}>Delete</button>
+                                        </>
+                                    }
+                                </div>
+                            </div>
+                            <div className={styles.address}>
+                                <LocationOnIcon className={styles.icon}/>
+                                {noticeData.location}
+                            </div>
+                            <div className={styles.text}>
+                                <h2>Description</h2>
+                                <p>{noticeData.description}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.numbers}>
+                            <div className={styles.wrapper}>
+                                <span>Brief information</span>
+                                <p><b>Owner: </b>{noticeData.user}</p>
+                                <div className={styles.data}>
+                                    <div className={styles.number}>
+                                        <BedIcon className={styles.icon}/>
+                                        <span>{noticeData.bedrooms}</span>
+                                    </div>
+                                    <div className={styles.number}>
+                                        <BathtubIcon className={styles.icon}/>
+                                        <span>{noticeData.bathrooms}</span>
+                                    </div>
+                                    <div className={styles.number}>
+                                        <ChairIcon className={styles.icon}/>
+                                        <span>{noticeData.rooms}</span>
+                                    </div>
+                                    <div className={styles.number}>
+                                        <AspectRatioIcon className={styles.icon}/>
+                                        <span>{noticeData.meters}m</span>
+                                    </div>
+                                </div>
+                                <div className={styles.price}>
+                                    <span>Rental price: 
+                                        <span className={styles.number}> {noticeData.price}€</span> / month
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <Card className="border-0">
-
-                        <Card.Img
-                        variant='top'
-                        src={`${IMGS_URL}/${noticeData.photo}`}
-                        alt='Apartment photo'
-                        >    
-                        </Card.Img>
-
-                        <Card.Text className={"m-0"}>
-                            <span dangerouslySetInnerHTML={{__html: noticeData.description }}></span>
-                        </Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Location:</span>{' '+ noticeData.location}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Price:</span>{' ' + noticeData.price + '$'}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Bedrooms:</span>{' ' + noticeData.bedrooms}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Bathrooms:</span>{' ' + noticeData.bathrooms}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Rooms:</span>{' ' + noticeData.rooms}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Meters:</span>{' ' + noticeData.meters}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>User:</span>{' '+ noticeData.user}</Card.Text>
-                        <Card.Text className={"m-0"}><span className={"fw-bold"}>Date:</span>{' '+ noticeData.date}</Card.Text>
-                        
-                    </Card>
                 </div>
-            </Row>
+            </div>
+
+
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

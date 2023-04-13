@@ -15,7 +15,9 @@ const OfferSmallCard = ({notice, user}) => {
   return (
     <Col>
       <div className={styles.offer}>
-        <img src={`${IMGS_URL}/${notice?.photo}`} alt="Main image"/>  
+        <Link to={`/notice/${notice._id}`}>
+          <img src={`${IMGS_URL}/${notice?.photo}`} alt="Main image"/>  
+        </Link>
         <div className={styles.info}>
           <div className={styles.price}>
             <div className={styles.value}>

@@ -6,16 +6,26 @@
   padding-bottom: 20px;
 
   .image {
+    overflow:hidden;
+    width: 550px;
+    border-radius: 15px;
+
     img {
       border-radius: 15px;
       width: 250px;
       height: 100%;
       object-fit: cover;
+      transform:scale(1, 1);
+      transition: 1s;
+      &:hover {
+        transform:scale(1.1, 1.1);
+      }
     }
   }
 
   .description {
     padding-left: 20px;
+    width: 100%;
 
     .header {
       display: flex;
@@ -99,8 +109,12 @@
         padding: 10px 40px;
         border-radius: 10px;
         background-color: $black;
-        color: white;
         font-size: 12px;
+
+        a {
+          text-decoration: none;
+          color: $white;
+        }
 
         &:hover {
           background-color: $color-darkGrey;

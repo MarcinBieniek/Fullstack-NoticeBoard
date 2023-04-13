@@ -18,12 +18,12 @@ const NewestOffer = (notices) => {
 
   const allNotices = notices.notices;
   const newestNotice = allNotices[allNotices.length -1 ];
-  
+
   return (
     <div className={styles.last_offer}>
-      <div className={styles.image}>
+      <Link to={`/notice/${newestNotice?._id}`} className={styles.image}>
         <img src={`${IMGS_URL}/${newestNotice?.photo}`} alt="Main photo" /> 
-      </div>   
+      </Link>   
       <div className={styles.description}>
         <div className={styles.header}>
           <span>Recently added</span>
@@ -62,7 +62,11 @@ const NewestOffer = (notices) => {
             <span className={styles.number}> {newestNotice?.price}€</span> / month</span>
         </div>
         <div className={styles.buttons}>
-          <button>See details</button>
+          <button>
+            <Link to={`/notice/${newestNotice?._id}`}>
+              More
+            </Link>
+          </button>
 
           {newestNotice?.user === user?.login && 
             <div className={styles.hidden_buttons}>

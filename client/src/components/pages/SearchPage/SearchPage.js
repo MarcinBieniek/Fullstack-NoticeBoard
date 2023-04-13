@@ -17,8 +17,6 @@ const SearchPage = () => {
         offer.location.toLowerCase().includes(search.toLowerCase()) 
     )
 
-    console.log('filteredsearch is', filteredSearch)
-
     return (
         <Row xs={1} md={4} className='g-3 my-5'>
             {filteredSearch.map((notice) => (
