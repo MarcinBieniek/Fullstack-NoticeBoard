@@ -16,6 +16,7 @@ import NotFound from './components/pages/NotFound/NotFound';
 import TopBar from './components/views/TopBar/TopBar';
 import HomeNew from './components/pages/HomeNew/HomeNew';
 import Contact from './components/pages/Contact/Contact';
+import Footer from './components/views/Footer/Footer';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/contact" element={<Contact/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <Footer />
     </main>  
   );
 }

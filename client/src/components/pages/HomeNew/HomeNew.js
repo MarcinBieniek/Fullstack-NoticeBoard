@@ -14,6 +14,7 @@ import Modal from 'react-bootstrap/Modal';
 import { fetchNotices } from '../../../redux/noticesReducer';
 import {getAllNotices} from '../../../redux/noticesReducer';
 import OfferSmallCard from '../../features/OfferSmallCard/OfferSmallCard';
+import Footer from '../../views/Footer/Footer';
 
 const HomeNew = () => {
 
