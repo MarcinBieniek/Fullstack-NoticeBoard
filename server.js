@@ -9,11 +9,13 @@ require('dotenv').config();
 
 // start express server
 const app = express(); 
-app.listen(process.env.PORT || 8000, () => {
-  console.log('Server is running...');
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 // connect to db 
+
 const NODE_ENV = process.env.NODE_ENV;
 const DB_URL = process.env.DB_URL;
 let dbUri = '';

@@ -1,10 +1,10 @@
 @import '../../../styles/settings.scss';
 
 .container {
-  width: 100%;
+  width: 100vw;
   height: 70px;
+  background-color: red;
   
-
   .wrapper {
     height: 100%;
     padding: 0px 50px;
@@ -94,9 +94,23 @@
         .icon {
           margin: 0px 0px 5px 5px;
         }
-      }
-
-      
+      } 
     }
   }
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+
+}
+
+@media (max-width: 368px) {
+
 }
