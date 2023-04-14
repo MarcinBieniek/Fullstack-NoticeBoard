@@ -48,7 +48,7 @@ const LoginPage = () => {
 
   return (
 
-    <Stack className="col-10 col-md-5 mt-5 mb-5 mx-auto">
+    <Stack className="col-10 col-md-5 mt-5 mb-5 mx-auto vh-100">
       <h1 className="mx-auto">Sign in</h1>
       <p className="mx-auto">Demo access - login: JohnDoe, password: admin1</p>
       <Form onSubmit={handleSubmit}>

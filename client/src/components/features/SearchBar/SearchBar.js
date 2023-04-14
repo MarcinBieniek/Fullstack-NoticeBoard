@@ -30,14 +30,14 @@ const SearchBarTest = () => {
 
     return (
         <div className={styles.searchBar}>
-            <Form className='d-flex'>
+            <Form className='d-flex' onSubmit={handleClick}>
                 <Button 
                     className={styles.searchButton} 
                     as={Link} 
                     to={'/searchResult/' + searchValue}
                     onClick={handleClick}
                 >
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon} />
                 </Button>
                 <input
                     type='search'

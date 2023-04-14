@@ -9,7 +9,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const TopBar = () => {
 
   const user = useSelector(getUser);
-  console.log('user is', user)
 
   return (
     <div className={styles.container}>
@@ -33,13 +32,10 @@ const TopBar = () => {
           <div className={styles.login}>
             { user 
               ?
-                <Link to="/categories">
+                <div>
                   {"Hello, " + user.login}
-
-
-
                   <AccountCircleIcon className={styles.icon}/>
-                </Link>
+                </div>
               :  
                 <Link to="/login">
                   Login

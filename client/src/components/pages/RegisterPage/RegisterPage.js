@@ -48,7 +48,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <Stack className="col-10 col-md-5 mt-5 mb-5 mx-auto">
+    <Stack className="col-10 col-md-5 mt-5 mx-auto min-vh-100">
 
       <h1 className="mx-auto">Sign up</h1>
 

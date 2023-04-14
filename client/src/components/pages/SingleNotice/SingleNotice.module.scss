@@ -1,7 +1,8 @@
 @import '../../../styles/settings.scss';
 
 .container {
-  width: 100vw;
+  max-width: 100%;
+  height: calc(100vh - 120px);
   background-color: $main-background;
 
   .wrapper {
@@ -116,6 +117,29 @@
               font-size: 20px;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// Media queries
+
+@media (max-width: 576px) {
+  .container {
+    .wrapper {
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: 368px) {
+  .container {
+    .wrapper {
+      .info {
+        flex-direction: column;
+        .description {
+          padding: 0px;
         }
       }
     }

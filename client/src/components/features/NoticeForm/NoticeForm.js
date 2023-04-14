@@ -64,7 +64,7 @@ const PostForm = ({
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
     return (
-        <Form onSubmit={validate(handleSubmit)}>
+        <Form onSubmit={validate(handleSubmit)} className="mb-3">
             
             <Form.Group className="mb-3" controlId="noticeTitle">
                 <Form.Label>Title</Form.Label>

@@ -4,3 +4,9 @@
   height: 90%;
   border-radius: 15px;
 }
+
+@media (max-width: 992px) {
+  .map {
+    height: 97%;
+  }
+}

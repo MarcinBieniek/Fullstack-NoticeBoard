@@ -33,10 +33,29 @@ const HomeNew = () => {
   return (
 
     <>
-      <Row className={styles.container}>
+      <div className={styles.container}>
         <div className={styles.wrapper}>
 
-          <Col md={12} lg={6} className={styles.left}>
+          <div className={styles.hidden_top}>
+            {user ?
+              <Link to="/notice/add">
+                <button>
+                  <span>Add new offer</span>
+                  <AddIcon className={styles.icon}/>
+                </button>
+              </Link>
+            :
+              <Link to="/">
+                <button onClick={handleShow}>
+                  <span>Add new offer</span>
+                  <AddIcon className={styles.icon}/>
+                </button>
+              </Link>
+            }
+            <SearchBar /> 
+          </div>
+
+          <div className={styles.left}>
             <Row>
               <NewestOffer notices={notices}/>
             </Row>
@@ -45,9 +64,9 @@ const HomeNew = () => {
                 <OfferSmallCard notice={notice} key={id} user={user}/>
               )}
             </Row>
-          </Col>
+          </div>
 
-          <Col xs={12} lg={6} className={styles.right}>
+          <div className={styles.right}>
             <div className={styles.top}>
               {user ?
                 <Link to="/notice/add">
@@ -68,9 +87,9 @@ const HomeNew = () => {
               <SearchBar /> 
             </div>
             <Map />
-          </Col>
+          </div>
         </div>
-      </Row>
+      </div>
 
       <Modal 
         show={show} 
