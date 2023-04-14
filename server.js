@@ -18,7 +18,6 @@ app.listen(PORT, () => {
 });
 
 // connect to db 
-
 mongoose
   .connect(process.env.DB_URL, { 
     useNewUrlParser: true, 
