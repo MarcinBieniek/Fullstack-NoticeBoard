@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import { API_URL } from '../config';
 
 //selectors
 export const getAllNotices = ({ notices }) => notices;
@@ -19,7 +20,7 @@ export const editNotices = payload => ({ type: EDIT_NOTICES, payload });
 
 export const fetchNotices = () => {
   return (dispatch) => {
-    fetch('http://localhost:8000/api/ads')
+    fetch(`${API_URL}api/ads`)
       .then(res => res.json())
       .then(notices => dispatch(updateNotices(notices)));
   }
