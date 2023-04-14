@@ -1,11 +1,14 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const cors = require('cors');
+const session = require('express-session');
 const path = require('path');
 const MongoStore = require('connect-mongo');
-const mongoose = require('mongoose');
-const session = require('express-session');
 const bcrypt = require('bcryptjs');
-require('dotenv').config();
+
+// set dotenv
+dotenv.config();
 
 // start express server
 const app = express(); 
@@ -16,24 +19,13 @@ app.listen(PORT, () => {
 
 // connect to db 
 
-const NODE_ENV = process.env.NODE_ENV;
-const DB_URL = process.env.DB_URL;
-let dbUri = '';
-
-if(NODE_ENV === 'production') dbUri = "mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority";
-else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NoticeBoard';
-else dbUri = 'mongodb://localhost:27017/NoticeBoard';
-
-mongoose.connect("mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority", { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-});
-const db = mongoose.connection;
-
-db.once('open', () => {
-  console.log('Connected to the database');
-});
-db.on('error', err => console.log('Error ' + err));
+mongoose
+  .connect(process.env.DB_URL, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+})
+.then(() => {console.log('DB connection succesfull')})
+.catch((err) => {console.log('DB error is', err)});
 
 // add middleware
 app.use(cors({
@@ -48,12 +40,12 @@ if(process.env.NODE_ENV !== 'production') {
       credentials: true,
     })
   );
-} 
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ 
   secret: bcrypt.hashSync('xyz678', 8), 
-  store: MongoStore.create({ mongoUrl: dbUri, collection: 'sessions' }), 
+  store: MongoStore.create({ mongoUrl: process.env.DB_URL, collection: 'sessions' }), 
   resave: false, 
   saveUninitialized: false,
   cookie: {
