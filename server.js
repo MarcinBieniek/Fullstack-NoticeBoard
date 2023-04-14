@@ -17,14 +17,14 @@ app.listen(PORT, () => {
 // connect to db 
 
 const NODE_ENV = process.env.NODE_ENV;
-const DB_URL = process.env.MONGO_URL;
+const DB_URL = process.env.DB_URL;
 let dbUri = '';
 
-if(NODE_ENV === 'production') dbUri = DB_URL;
+if(NODE_ENV === 'production') dbUri = "mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority";
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NoticeBoard';
 else dbUri = 'mongodb://localhost:27017/NoticeBoard';
 
-mongoose.connect(DB_URL, { 
+mongoose.connect("mongodb+srv://MarcinEden:lAfQdFbsqxfLcAi4@cluster1.sg1w6lh.mongodb.net/RealEstateBoard?retryWrites=true&w=majority", { 
   useNewUrlParser: true, 
   useUnifiedTopology: true 
 });
