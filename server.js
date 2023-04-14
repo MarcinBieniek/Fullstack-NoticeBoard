@@ -27,19 +27,7 @@ mongoose
 .catch((err) => {console.log('DB error is', err)});
 
 // add middleware
-app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:8000"],
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD', 'DELETE'],
-  credentials: true
-}))
-if(process.env.NODE_ENV !== 'production') {
-  app.use(
-    cors({
-      origin: ['http://localhost:3000'],
-      credentials: true,
-    })
-  );
-};
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ 
