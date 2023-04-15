@@ -30,9 +30,6 @@ const OfferSmallCard = ({notice, user}) => {
                   <Link to={`/notice/edit/${notice._id}`}>
                     <EditLocationAltIcon className={styles.icon} />
                   </Link>
-                  <Link to=''>
-                    <DeleteIcon className={styles.icon} />
-                  </Link>
                 </>
               }
               <Link to=''>

@@ -104,8 +104,6 @@ const SingleNotice = () => {
                 </div>
             </div>
 
-
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure?</Modal.Title>
