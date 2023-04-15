@@ -40,9 +40,10 @@
     
             button {
               border: none;
-              padding: 10px 40px;
+              padding: 5px 40px;
               border-radius: 15px;
               background-color: $yellow;
+              color: black;
     
               &:hover {
                 background-color: $color-darkGrey;
@@ -52,10 +53,11 @@
     
           button {
             border: none;
-            padding: 10px 40px;
+            padding: 5px 30px;
             background-color: red;
             border-radius: 15px;
             margin-left: 10px;
+            color: black;
     
             &:hover {
               background-color: $color-darkGrey;
@@ -127,10 +129,43 @@
 
 // Media queries
 
+@media (max-width: 1077px) {
+  .container {
+    .wrapper {
+      padding: 20px;
+        .info {
+          .description {
+            padding: 0px;
+            .header {
+              .buttons {
+                button {
+                  margin-top: 5px;
+                }
+              }
+            }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 576px) {
   .container {
     .wrapper {
       padding: 20px;
+        .info {
+          flex-direction: column;
+          .description {
+            padding: 0px;
+            .header {
+              .buttons {
+                button {
+                  margin-top: 5px;
+                }
+              }
+            }
+        }
+      }
     }
   }
 }
@@ -139,11 +174,23 @@
   .container {
     .wrapper {
       .info {
-        flex-direction: column;
         .description {
-          padding: 0px;
+          .header {
+            flex-direction: column;
+            .buttons {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+              button {
+                margin-left: 0px;
+              }
+            }
+          }
         }
       }
     }
   }
 }
+
+

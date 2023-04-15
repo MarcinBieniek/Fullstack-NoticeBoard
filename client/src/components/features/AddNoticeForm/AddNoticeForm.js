@@ -24,6 +24,7 @@ const AddNoticeForm = () => {
         formData.append('photo', notice.photo);
         formData.append('user', notice.user);
         formData.append('date', notice.date);
+        formData.append('map', notice.map);
 
         const options = {
             method: 'POST',

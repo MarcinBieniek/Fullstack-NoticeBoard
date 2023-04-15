@@ -35,6 +35,7 @@ const EditNoticeForm = () => {
         editedData.append('meters', notice.meters);
         editedData.append('photo', notice.photo);
         editedData.append('user', notice.user);
+        editedData.append('map', notice.map);
 
         const options = {
             method: 'PUT',
@@ -100,6 +101,7 @@ const EditNoticeForm = () => {
                 meters={noticeData.meters} 
                 photo={noticeData.photo} 
                 user={noticeData.user}
+                map={noticeData.map}
             />
         </div>
     )

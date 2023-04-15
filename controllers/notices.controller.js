@@ -23,7 +23,7 @@ exports.getById = async (req, res) => {
 };
 
 exports.postDoc = async (req, res) => {
-    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date } = req.body;
+    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date, map } = req.body;
 
     const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
 
@@ -40,7 +40,8 @@ exports.postDoc = async (req, res) => {
                 meters,
                 photo: req.file.filename,
                 user,
-                date
+                date,
+                map
             })
             await newNotice.save();
             res.status(201).send({ message: 'Notice created' });
@@ -57,7 +58,7 @@ exports.postDoc = async (req, res) => {
 };
 
 exports.putDoc = async (req, res) => {
-    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date } = req.body;
+    const { title, description, location, price, bedrooms, bathrooms, rooms, meters, user, date, map } = req.body;
     
     console.log('reqbody is ', req.body)
 
@@ -76,6 +77,7 @@ exports.putDoc = async (req, res) => {
             notice.rooms = rooms;
             notice.meters = meters;
             notice.user = user;
+            notice.map = map;
             if (req.file) {
               notice.photo = req.file.filename;
             }

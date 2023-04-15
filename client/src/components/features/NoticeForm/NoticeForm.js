@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
@@ -28,7 +27,8 @@ const PostForm = ({
     const [rooms, setRooms] = useState(props.rooms || '');
     const [meters, setMeters] = useState(props.meters || '');
     const [photo, setPhoto] = useState('');
-    const [date, setDate] = useState(props.date || publicationDate)
+    const [date, setDate] = useState(props.date || publicationDate);
+    const [map, setMap] = useState(props.map || '');
 
     const [contentError, setContentError] = useState(false);
     const [photoError, setPhotoError] = useState(false);
@@ -47,7 +47,8 @@ const PostForm = ({
                 meters, 
                 photo, 
                 user: user.login, 
-                date 
+                date, 
+                map
             });
         }
     };
@@ -159,6 +160,18 @@ const PostForm = ({
                     {...register("description", { required: true, minLength: 3 })}  
                     value={description} 
                     onChange={e => setDescription(e.target.value)} 
+                    type="text"
+                    placeholder="Type here" 
+                />
+                {contentError && <small className="d-block form-text text-danger mt-2">Content can't be empty</small>}
+            </Form.Group>
+
+            <Form.Group className="mb-4" controlId="noticeMap">
+                <Form.Label value={map}>Map Coordinantes (type in this form: 52.5170365 13.3888599)</Form.Label>             
+                <Form.Control
+                    {...register("map", { required: true, minLength: 3 })}  
+                    value={map} 
+                    onChange={e => setMap(e.target.value)} 
                     type="text"
                     placeholder="Type here" 
                 />
