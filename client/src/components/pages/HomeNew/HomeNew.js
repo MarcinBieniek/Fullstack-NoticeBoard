@@ -8,13 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Map from '../../features/Map/Map';
 import NewestOffer from '../../features/NewestOffer /NewestOffer';
 import { getUser } from '../../../redux/usersReducer';
-import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Modal from 'react-bootstrap/Modal';
 import { fetchNotices } from '../../../redux/noticesReducer';
 import {getAllNotices} from '../../../redux/noticesReducer';
 import OfferSmallCard from '../../features/OfferSmallCard/OfferSmallCard';
-import Footer from '../../views/Footer/Footer';
 
 const HomeNew = () => {
 
