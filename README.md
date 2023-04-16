@@ -1,6 +1,6 @@
 ## Description
 
-Real estate agency website integrated with interactive map. Frontend coded in SASS/React; backend made with NodeJS, Express and MongoDB. The service allows users to register/login and perform CRUD operations on real estate offers. Each offer is presented on a map component with a direct location.
+Real estate agency website integrated with interactive map. Frontend coded in SASS/React; backend made with NodeJS, Express and MongoDB. Full RWD. The service allows users to register/login and perform CRUD operations on real estate offers. Each offer is presented on a map component with a direct location.
 
 ## Demo
 
