@@ -10,12 +10,7 @@ import ChairIcon from '@mui/icons-material/Chair';
 import { IMGS_URL } from '../../../configs/config';
 import { getUser } from '../../../redux/usersReducer';
 import { useSelector } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from '../../../config';
-import { useState } from 'react';
-
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NewestOffer = (notices) => {
 
@@ -23,7 +18,6 @@ const NewestOffer = (notices) => {
 
   const allNotices = notices.notices;
   const newestNotice = allNotices[allNotices.length -1 ];
-  const navigate = useNavigate();
 
   return (
     <>

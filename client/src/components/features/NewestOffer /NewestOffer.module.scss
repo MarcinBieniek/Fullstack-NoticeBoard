@@ -161,6 +161,20 @@
   }
 }
 
+@media (max-width: 576px) {
+  .last_offer {
+    .description {
+      .buttons {
+        button {
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+
+}
+
+
 @media (max-width: 368px) {
   .last_offer {
     flex-direction: column;
